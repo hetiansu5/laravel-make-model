@@ -23,18 +23,18 @@
   },
   "autoload-dev": {
     "classmap": [
-      "tests/"
+      "test/tests/"
     ],
     "psr-4": {
-      "App\\": "app/"
+      "App\\": "test/app/"
     }
   },
   "scripts": {
     "env-install": [
-      "php -r \"copy('.env.example', '.env');\""
+      "php -r \"copy('test/.env.example', 'test/.env');\""
     ],
     "test" : [
-      "vendor/bin/phpunit --configuration phpunit.xml --colors  tests"
+      "vendor/bin/phpunit --configuration phpunit.xml --colors  test/tests"
     ]
   }
 }

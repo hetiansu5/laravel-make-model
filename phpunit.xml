@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="bootstrap/app.php"
+         bootstrap="test/bootstrap/app.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -11,13 +11,13 @@
          syntaxCheck="false">
     <testsuites>
         <testsuite name="Application Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+            <directory suffix="Test.php">./test/tests</directory>
         </testsuite>
     </testsuites>
     <listeners>
         <listener
                 class='TestCasePrepareListener'
-                file='./tests/TestCasePrepareListener.php'
+                file='./test/tests/TestCasePrepareListener.php'
         />
     </listeners>
     <filter>
