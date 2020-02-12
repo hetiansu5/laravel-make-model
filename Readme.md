@@ -5,7 +5,7 @@ Laravel Plugin Library for Creating a new Eloquent model class filled with gette
 1.Import package via composer  
 
 ```
-composer require tinson/laravel-make-model:^1.0.0
+composer require --dev tinson/laravel-make-model:^1.0.0
 ```  
 
 2.Import provider at `bootstrap/app.php` in your project  
