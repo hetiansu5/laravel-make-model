@@ -31,10 +31,10 @@ class MakeModelCommandTest extends TestCase
 
     public function testHandle_MissingOption_Model()
     {
-        $this->expectException(RuntimeException::class);
         $this->artisan('make:e-model', [
             'table' => 'users',
         ]);
+        $this->assertSame(true, file_exists($this->path));
     }
 
     public function testHandle()

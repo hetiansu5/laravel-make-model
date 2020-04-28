@@ -265,7 +265,7 @@ class ClassTemplate
     private function genGetter($field)
     {
         $t = $this->genSpace() . '/**' . PHP_EOL;
-        $t .= $this->genSpace() . ' * return ' . $field->getReturnValueType() . PHP_EOL;
+        $t .= $this->genSpace() . ' * @return ' . $field->getReturnValueType() . PHP_EOL;
         $t .= $this->genSpace() . ' */' . PHP_EOL;
         $t .= $this->genSpace() . 'public function get' . $this->snakeToBigCamel($field->getField()) . '()' . PHP_EOL;
         $t .= $this->genSpace() . '{' . PHP_EOL;

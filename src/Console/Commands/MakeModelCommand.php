@@ -43,8 +43,9 @@ class MakeModelCommand extends Command
         $ignoreField = $this->option('ignoreField');
         $ignoreTime = $this->option('ignoreTime');
 
+        $template = new ClassTemplate();
         if (empty($model)) {
-            throw new RunTimeException("option `model` is missing");
+            $model = rtrim($template->snakeToBigCamel($table), "s");
         }
 
         $fields = !empty($field) ? explode(',', $field) : [];
@@ -54,15 +55,12 @@ class MakeModelCommand extends Command
             $ignoreFields = array_merge($ignoreFields, $defaultTimes);
         }
 
-        $template = new ClassTemplate();
         $template->setNameSpace('App\Models');
         $template->setClassName($template->snakeToBigCamel($model));
         $template->setUses([
             'Illuminate\Database\Eloquent\Model',
-            'Illuminate\Database\Eloquent\SoftDeletes'
         ]);
         $template->setExtend('Model');
-        $template->addUseTraits('SoftDeletes');
 
         //table属性
         $template->addAttribute(new Attribute(Attribute::TYPE_PROTECTED, 'table', "'{$table}'"));
@@ -73,6 +71,7 @@ class MakeModelCommand extends Command
          */
         $tableDefinition = new Table($tableDesc);
         $existTimes = [];
+        $hasDeleted = false;
         foreach ($tableDefinition as $fieldObject) {
             if ($fieldObject->isPrimary()) {
                 //主键属性
@@ -81,6 +80,10 @@ class MakeModelCommand extends Command
 
             if (in_array($fieldObject->getField()->toString(), $defaultTimes)) {
                 $existTimes[] = $fieldObject->getField()->toString();
+            }
+
+            if ($fieldObject->getField()->toString() == 'deleted_at') {
+                $hasDeleted = true;
             }
 
             if (!empty($fields)) {
@@ -95,6 +98,12 @@ class MakeModelCommand extends Command
             //setter and getter
             $getter = new Getter($fieldObject->getField()->toString(), $fieldObject->getType()->toString());
             $template->addGetSetters($getter);
+        }
+
+        //有删除属性
+        if ($hasDeleted) {
+            $template->addUse('Illuminate\Database\Eloquent\SoftDeletes');
+            $template->addUseTraits('SoftDeletes');
         }
 
         //dates属性
