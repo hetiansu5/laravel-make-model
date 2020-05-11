@@ -1,8 +1,8 @@
 <?php
 
-abstract class TestCase extends Laravel\Lumen\Testing\TestCase
+abstract class UnitTestCase extends Laravel\Lumen\Testing\TestCase
 {
-    use TestCasePrepare;
+    use UnitTestCasePrepare;
     /**
      * Creates the application.
      *

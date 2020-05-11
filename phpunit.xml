@@ -16,8 +16,8 @@
     </testsuites>
     <listeners>
         <listener
-                class='TestCasePrepareListener'
-                file='./test/tests/TestCasePrepareListener.php'
+                class='UnitTestCasePrepareListener'
+                file='./test/tests/UnitTestCasePrepareListener.php'
         />
     </listeners>
     <filter>

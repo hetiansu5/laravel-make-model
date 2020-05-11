@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class TestCasePrepareListener extends \PHPUnit\Framework\BaseTestListener
+class UnitTestCasePrepareListener extends \PHPUnit\Framework\BaseTestListener
 {
     public function __destruct()
     {
-        if (TestCasePrepare::$migrateRollbackWhenTearDown) {
+        if (UnitTestCasePrepare::$migrateRollbackWhenTearDown) {
             echo "Prepare Reset Migrate......" . PHP_EOL;
             static::callArtisan('migrate:reset');
             echo "Reset Migrate Done" . PHP_EOL;

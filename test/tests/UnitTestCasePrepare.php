@@ -8,7 +8,7 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
  * 当前版本的Lumen DatabaseTransaction只支持单数据库
  * Trait MultipleDatabaseTransactions
  */
-trait TestCasePrepare
+trait UnitTestCasePrepare
 {
     /**
      * determine if executing migrate:rollback after tested

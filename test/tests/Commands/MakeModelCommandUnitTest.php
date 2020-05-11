@@ -2,7 +2,7 @@
 
 use Symfony\Component\Console\Exception\RuntimeException;
 
-class MakeModelCommandTest extends TestCase
+class MakeModelCommandUnitTest extends UnitTestCase
 {
 
     private $path;
